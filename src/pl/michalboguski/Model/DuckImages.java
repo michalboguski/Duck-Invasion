@@ -1,13 +1,10 @@
 package pl.michalboguski.Model;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 
 public class DuckImages {
-   public static ImageIcon yellowRightUp;
-   public static ImageIcon yellowLeftUp;
+    public static ImageIcon yellowRightUp;
+    public static ImageIcon yellowLeftUp;
     public static ImageIcon yellowRightCenter;
     public static ImageIcon yellowLeftCenter;
     public static ImageIcon yellowRightDown;
@@ -40,7 +37,6 @@ public class DuckImages {
     public static ImageIcon greyLeftCenter;
     public static ImageIcon greyRightDown;
     public static ImageIcon greyLeftDown;
-
 
 
     public DuckImages() {

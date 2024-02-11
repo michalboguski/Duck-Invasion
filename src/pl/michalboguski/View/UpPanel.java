@@ -12,7 +12,7 @@ public class UpPanel extends JPanel {
     public static JLabel points;
 
     public UpPanel() {
-        Dimension d = new Dimension(100,40);
+        Dimension d = new Dimension(100, 40);
         setLayout(new FlowLayout());
         setBackground(Color.yellow);
         lives = new JLabel();
@@ -32,11 +32,11 @@ public class UpPanel extends JPanel {
 
         JLabel test = new JLabel("TEST");
         test.setOpaque(true);
-        test.setSize(40,40);
+        test.setSize(40, 40);
         add(test);
     }
 
-    public static void updateUp(){
+    public static void updateUp() {
         if (GameControler.lives > 0) {
             lives.setText(String.valueOf(GameControler.lives));
             seconds.setText(String.valueOf(TimeLapse.seconds));

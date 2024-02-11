@@ -2,15 +2,11 @@ package pl.michalboguski.Controler;
 
 import pl.michalboguski.Model.DificulyLevel;
 import pl.michalboguski.Model.GameConstants;
-import pl.michalboguski.Model.GameLevel;
 import pl.michalboguski.Model.TimeLapse;
 import pl.michalboguski.View.DownPanel;
 import pl.michalboguski.View.Duck;
 import pl.michalboguski.View.PlayPanel;
 import pl.michalboguski.View.UpPanel;
-
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class GameControler {
     public static int lives = 10;
@@ -23,8 +19,8 @@ public class GameControler {
     DificulyLevel dl;
 
 
-    public GameControler(GameConstants.Levels gameLevel){
-       new DificulyLevel(5,gameLevel);
+    public GameControler(GameConstants.Levels gameLevel) {
+        new DificulyLevel(5, gameLevel);
 
         if (gameLevel == GameConstants.Levels.EASY) Duck.speed = 3;
         if (gameLevel == GameConstants.Levels.NORMAL) Duck.speed = 5;
@@ -36,12 +32,7 @@ public class GameControler {
     public void play() {
 
 
-
-
-
     }
-
-
 
 
 }

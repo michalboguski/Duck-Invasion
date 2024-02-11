@@ -4,6 +4,7 @@ import pl.michalboguski.Controler.DuckControler;
 import pl.michalboguski.Controler.GameControler;
 import pl.michalboguski.Model.DificulyLevel;
 import pl.michalboguski.Model.GameConstants;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 
 public class PlayPanel extends JPanel {
 
@@ -20,7 +20,7 @@ public class PlayPanel extends JPanel {
     DuckControler DC = new DuckControler();
     DificulyLevel level = new DificulyLevel(1, GameConstants.Levels.EASY);
 
-    public PlayPanel()  {
+    public PlayPanel() {
         super();
         setLayout(null);
         setVisible(true);
@@ -57,7 +57,8 @@ public class PlayPanel extends JPanel {
         });
         timer.start();
     }
-    public void addDuck(){
+
+    public void addDuck() {
         for (Duck duck : DuckControler.next) {
             DuckControler.ducks.add(duck);
             add(duck);
@@ -67,12 +68,8 @@ public class PlayPanel extends JPanel {
     }
 
 
-
-
-
-
-            public void paintComponent(Graphics g){
-        g.drawImage(backgroundImage,0,0,null);
+    public void paintComponent(Graphics g) {
+        g.drawImage(backgroundImage, 0, 0, null);
     }
 
 }

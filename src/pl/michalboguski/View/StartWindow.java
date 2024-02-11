@@ -9,7 +9,7 @@ import java.awt.*;
 public class StartWindow extends JFrame {
 
     public StartWindow() {
-        setPreferredSize(new Dimension(GameConstants.screenWigth-300, GameConstants.screenHeight));
+        setPreferredSize(new Dimension(GameConstants.screenWigth - 300, GameConstants.screenHeight));
         setDefaultCloseOperation(GameWindow.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(null);
@@ -20,7 +20,6 @@ public class StartWindow extends JFrame {
         setVisible(true);
         setResizable(false);
     }
-
 
 
 }
