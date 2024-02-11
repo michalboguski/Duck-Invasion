@@ -1,12 +1,9 @@
 package pl.michalboguski.Controler;
 
-import com.sun.tools.javac.Main;
 import pl.michalboguski.Model.*;
 import pl.michalboguski.Model.DuckImages;
 import pl.michalboguski.View.Duck;
 import pl.michalboguski.View.GamePanel;
-import pl.michalboguski.View.PlayPanel;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

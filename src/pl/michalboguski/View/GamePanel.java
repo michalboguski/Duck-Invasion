@@ -12,7 +12,6 @@ public class GamePanel extends JPanel {
         setPreferredSize(new Dimension(screenWidth, screenHeight));
 
 
-        /////
         UpPanel topPanel = new UpPanel();
         JLayeredPane centerPanel = new JLayeredPane();
 
@@ -28,7 +27,6 @@ public class GamePanel extends JPanel {
         centerPanel.add(glassPanel, JLayeredPane.DRAG_LAYER);
         JPanel bottomPanel = new JPanel();
 
-        //topPanel.setBackground(Color.red);
         centerPanel.setBackground(Color.gray);
         bottomPanel.setBackground(Color.red);
 

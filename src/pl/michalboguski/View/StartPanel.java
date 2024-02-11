@@ -13,12 +13,10 @@ public class StartPanel extends JPanel implements ActionListener {
     JButton highScore;
     JButton exit;
     public StartPanel() {
-      //  super();
-
-
-        setSize(new Dimension(GameConstants.screenWigth-300, GameConstants.screenHeight));
-        setBackground(Color.BLACK);
-        setLayout(null);
+      super();
+      setSize(new Dimension(GameConstants.screenWigth-300, GameConstants.screenHeight));
+      setBackground(Color.BLACK);
+      setLayout(null);
 
 
 
@@ -53,9 +51,11 @@ public class StartPanel extends JPanel implements ActionListener {
             new GameWindow();
             JFrame w = (JFrame) SwingUtilities.getWindowAncestor(newGame);
             w.dispose();
-           // new TimeLapse().start();
+
         }
-        if (e.getSource() ==  highScore ){}
+        if (e.getSource() ==  highScore ){
+            //todo
+        }
         if (e.getSource() == exit ){
            JFrame w = (JFrame) SwingUtilities.getWindowAncestor(exit);
            w.dispose();

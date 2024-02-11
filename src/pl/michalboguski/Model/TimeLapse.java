@@ -1,8 +1,5 @@
 package pl.michalboguski.Model;
 
-
-import java.time.LocalTime;
-
 public class TimeLapse extends Thread {
     public static int seconds = 0;
 
