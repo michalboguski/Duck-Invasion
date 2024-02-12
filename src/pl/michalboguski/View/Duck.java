@@ -1,8 +1,7 @@
 package pl.michalboguski.View;
 
 import pl.michalboguski.Controler.GameControler;
-import pl.michalboguski.Model.DuckImages;
-import pl.michalboguski.Model.GameConstants;
+import pl.michalboguski.Model.DuckAnimationSet;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,27 +12,47 @@ import java.util.Random;
 public class Duck extends JButton implements Runnable {
     public static int speed = 1;
     String direction;
-    boolean flyAway = false;
+    boolean flyAway;
     DuckColor color;
     int hp;
+    int voluePoints;
     boolean isAlaive;
-
+    DuckAnimationSet animationSet;
+    ImageIcon currentImage;
+    int quee;
 
     public Duck(DuckColor color) {
         super();
+        this.flyAway = false;
+        this.direction = randomDirection();
+        this.hp = initHP(color);
+        this.voluePoints = this.hp * speed;
+        this.animationSet = new DuckAnimationSet(color, direction);
+        initDuck();
+        this.quee = 0;
+    }
+
+    public void initDuck() {
         this.setFocusable(false);
         this.setSize(79, 64);
         this.setOpaque(false);
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);
-
-        this.direction = randomDirection();
-        initColor(color);
         initLocation();
-    }
-
-    public enum DuckColor {
-        GREY, BLUE, GREEN, YELLOW, RED
+        this.currentImage = animationSet.center;
+        addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == this) {
+                    hp--;
+                    if (getHp() <= 0) {
+                        setVisible(false);
+                        setAlaive(false);
+                        GameControler.points += voluePoints;
+                    }
+                }
+            }
+        });
     }
 
     public boolean isAlaive() {
@@ -49,25 +68,24 @@ public class Duck extends JButton implements Runnable {
         return r.nextBoolean() ? "Right" : "Left";
     }
 
-    public void initLocation(){
+    public void initLocation() {
         Random r = new Random();
         int y = r.nextInt(500);
         int x = 0;
         if ("Left".equals(getDirection())) {
             x = GamePanel.screenWidth - 100;
-            setIcon(DuckImages.yellowLeftUp);
-        } else if ("Right".equals(getDirection())) {
-            setIcon(DuckImages.yellowRightDown);
         }
         setLocation(new Point(x, y));
     }
 
-    public void initColor(DuckColor c){
-        if (DuckColor.YELLOW.equals(c)) this.hp = 1;
-        if (DuckColor.RED.equals(c)) this.hp = 2;
-        if (DuckColor.GREEN.equals(c)) this.hp = 3;
-        if (DuckColor.BLUE.equals(c)) this.hp = 4;
-        if (DuckColor.GREY.equals(c)) this.hp = 5;
+    public int initHP(DuckColor c) {
+        if (DuckColor.YELLOW.equals(c)) return 1;
+        if (DuckColor.RED.equals(c)) return 2;
+        if (DuckColor.GREEN.equals(c)) return 3;
+        if (DuckColor.BLUE.equals(c)) return 4;
+        if (DuckColor.GREY.equals(c)) return 5;
+
+        return 0;
     }
 
     public boolean isFlyAway() {
@@ -106,158 +124,61 @@ public class Duck extends JButton implements Runnable {
         this.color = color;
     }
 
-    public void setPosition(Duck duck) {
-        Random r = new Random();
-        int y = r.nextInt(500);
-        int x = 0;
-        if ("True".equals(duck.getDirection())) {
-            x = GamePanel.screenWidth + duck.getWidth() * (r.nextInt(2));
-            duck.setIcon(DuckImages.yellowLeftUp);
-        } else {
-            x = duck.getWidth() - ((r.nextInt(2)) * 75);
-            duck.setIcon(DuckImages.yellowRightDown);
-        }
-        duck.setLocation(new Point(x, y));
-        duck.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == duck) {
-                    duck.setHp(duck.getHp() - 1);
-                    if (duck.getHp() <= 0) {
-                        duck.setVisible(false);
-                        duck.setAlaive(false);
-                        if (duck.getColor() == Duck.DuckColor.YELLOW) GameControler.points += duck.getSpeed();
-                        if (duck.getColor() == Duck.DuckColor.RED) GameControler.points += duck.getSpeed() * 2;
-                        if (duck.getColor() == Duck.DuckColor.GREEN) GameControler.points += duck.getSpeed() * 3;
-                        if (duck.getColor() == Duck.DuckColor.BLUE) GameControler.points += duck.getSpeed() * 4;
-                        if (duck.getColor() == Duck.DuckColor.GREY) GameControler.points += duck.getSpeed() * 5;
-
-                    }
-                }
-            }
-        });
-    }
-
     public void move() {
-
-        for (Duck duck : ducks) {
-            if (ducks.isEmpty()) break;
-
-            if ("Left".equals(duck.getDirection()))
-                duck.setLocation(new Point(duck.getX() - Duck.speed, duck.getY()));
-            else
-                duck.setLocation(new Point(duck.getX() + Duck.speed, duck.getY()));
-
-            animate(duck);
-
-        }
-
+        if ("Right".equals(getDirection()))
+            setLocation(new Point(getX() - Duck.speed, getY()));
+        else
+            setLocation(new Point(getX() + Duck.speed, getY()));
     }
 
-    public void animate(Duck duck) {
-        new DuckImages();
-        int tmp = GameConstants.counter;
-        int w = 1000;
-        boolean isUp = true;
-        boolean isDown = false;
-
-        if ((tmp > 0) && (tmp < (w / 4))) {
-            isUp = true;
-            isDown = false;
-        } else if ((tmp > (w / 2)) && (tmp < (w * 3 / 4))) {
-            isDown = true;
-            isUp = false;
-        } else {
-            isDown = false;
-            isUp = false;
-        }
-//YELLOW
-        if (duck.getColor() == DuckColor.YELLOW) {
-            if (duck.getDirection() == false) {
-                if (isUp && !isDown)
-                    duck.setIcon(DuckImages.yellowLeftUp);
-                if (isDown && !isUp)
-                    duck.setIcon(DuckImages.yellowLeftDown);
-                if (!isDown && !isUp)
-                    duck.setIcon(DuckImages.yellowLeftCenter);
-            }
-
-            if (duck.getDirection() == true) {
-                if (isUp && !isDown)
-                    duck.setIcon(DuckImages.yellowRightUp);
-                if (isDown && !isUp)
-                    duck.setIcon(DuckImages.yellowRightDown);
-                if (!isDown && !isUp)
-                    duck.setIcon(DuckImages.yellowRightCenter);
-            }
-
-        } else
-            //RED
-            if (duck.getColor() == DuckColor.RED) {
-                if (duck.getDirection() == false) {
-                    if (isUp && !isDown)
-                        duck.setIcon(DuckImages.redLeftUp);
-                    else if (isDown && !isUp) duck.setIcon(DuckImages.redLeftDown);
-                    else duck.setIcon(DuckImages.redLeftCenter);
-
-                    if (duck.getDirection() == true) {
-                        if (isUp) duck.setIcon(DuckImages.redRightUp);
-                        else if (isDown) duck.setIcon(DuckImages.redRightDown);
-                        else duck.setIcon(DuckImages.redRightCenter);
-                    }
-                }
-            } else
-                //GREEN
-                if (duck.getColor() == DuckColor.GREEN) {
-                    if (duck.getDirection() == false) {
-                        if (isUp && !isDown)
-                            duck.setIcon(DuckImages.greenLeftUp);
-                        else if (isDown && !isUp) duck.setIcon(DuckImages.greenLeftDown);
-                        else duck.setIcon(DuckImages.greenLeftCenter);
-
-                        if (duck.getDirection() == true) {
-                            if (isUp) duck.setIcon(DuckImages.greenRightUp);
-                            else if (isDown) duck.setIcon(DuckImages.greenRightDown);
-                            else duck.setIcon(DuckImages.greenRightCenter);
-                        }
-                    }
-                } else
-                    //BLUE
-                    if (duck.getColor() == DuckColor.BLUE) {
-                        if (duck.getDirection() == false) {
-                            if (isUp && !isDown)
-                                duck.setIcon(DuckImages.blueLeftUp);
-                            else if (isDown && !isUp) duck.setIcon(DuckImages.blueLeftDown);
-                            else duck.setIcon(DuckImages.blueLeftCenter);
-
-                            if (duck.getDirection() == true) {
-                                if (isUp) duck.setIcon(DuckImages.blueRightUp);
-                                else if (isDown) duck.setIcon(DuckImages.blueRightDown);
-                                else duck.setIcon(DuckImages.blueRightCenter);
-                            }
-                        }
-                    } else
-                        //GREY
-                        if (duck.getColor() == DuckColor.GREY) {
-                            if (duck.getDirection() == false) {
-                                if (isUp && !isDown)
-                                    duck.setIcon(DuckImages.greyLeftUp);
-                                else if (isDown && !isUp) duck.setIcon(DuckImages.greyLeftDown);
-                                else duck.setIcon(DuckImages.greyLeftCenter);
-
-                                if (duck.getDirection() == true) {
-                                    if (isUp) duck.setIcon(DuckImages.greyRightUp);
-                                    else if (isDown) duck.setIcon(DuckImages.greyRightDown);
-                                    else duck.setIcon(DuckImages.greyRightCenter);
-                                }
-                            }
-                        }
-
-
-    }
 
     @Override
     public void run() {
-        //todo instead of DuckController
+        Random r = new Random();
+        int animateDeley;
+        long now;
+        long updateTime;
+        long wait;
+
+        final int TARGET_FPS = 60;
+        final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
+        int tick = 1;
+
+        while (isAlaive) {
+            now = System.nanoTime();
+
+            if (tick % 29 == 0) {
+                move();
+            }
+
+            animateDeley = r.nextInt(20) + 20;
+            if (tick % 29 == 0) {
+                animate();
+            }
+
+            updateTime = System.nanoTime() - now;
+            wait = (OPTIMAL_TIME - updateTime) / 1000000;
+
+            try {
+                Thread.sleep(wait);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            tick++;
+            if (tick >= 60) tick = 1;
+
+        }
     }
+
+    private void animate() {
+        switch (quee) {
+            case 0 -> {setIcon(animationSet.up); quee = 1;}
+                case 1 -> {setIcon(animationSet.center); quee = 2;}
+                    case 2 -> {setIcon(animationSet.down); quee = 3;}
+                        case 3 -> {setIcon(animationSet.center); quee = 0;}
+            }
+
+    }
+
+
 }

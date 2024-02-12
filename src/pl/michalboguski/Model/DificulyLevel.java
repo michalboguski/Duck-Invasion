@@ -4,8 +4,7 @@ public class DificulyLevel {
     public static int level = 5;
     GameConstants.Levels gameLevel;
 
-    public DificulyLevel(int startTimeLevel, GameConstants.Levels gameLevel) {
-        //this.level = startTimeLevel;
+    public DificulyLevel(GameConstants.Levels gameLevel) {
         this.gameLevel = gameLevel;
 
     }

@@ -3,12 +3,12 @@ package pl.michalboguski.Controler;
 import pl.michalboguski.Model.DificulyLevel;
 import pl.michalboguski.Model.GameConstants;
 import pl.michalboguski.View.Duck;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import pl.michalboguski.View.DuckColor;
 
-public class DuckControler {
-    public static java.util.List<Duck> ducks = new ArrayList<Duck>();
+import java.util.*;
+
+public class DuckControler implements Runnable{
+    public static Set<Duck> ducks = new HashSet<>();
     public static java.util.List<Duck> next = new ArrayList<Duck>();
     public static int Points = 1;
     Random r = new Random();
@@ -20,22 +20,22 @@ public class DuckControler {
         int duckPoints = DificulyLevel.level + 5;
         while (duckPoints > 0) {
             if ((duckPoints / 25) >= 1) {
-                next.add(new Duck(Duck.DuckColor.GREY));
+                next.add(new Duck(DuckColor.GREY));
                 duckPoints -= 5;
             }
             if ((duckPoints / 16) >= 1) {
-                next.add(new Duck(Duck.DuckColor.BLUE));
+                next.add(new Duck(DuckColor.BLUE));
                 duckPoints -= 4;
             }
             if ((duckPoints / 15) >= 1) {
-                next.add(new Duck(Duck.DuckColor.GREEN));
+                next.add(new Duck(DuckColor.GREEN));
                 duckPoints -= 3;
             }
             if ((duckPoints / 10) >= 1) {
-                next.add(new Duck(Duck.DuckColor.RED));
+                next.add(new Duck(DuckColor.RED));
                 duckPoints -= 2;
             } else {
-                next.add(new Duck(Duck.DuckColor.YELLOW));
+                next.add(new Duck(DuckColor.YELLOW));
                 duckPoints -= 1;
                 duckPoints -= 1;
             }
@@ -57,7 +57,8 @@ public class DuckControler {
     }
 
 
+    @Override
+    public void run() {
 
-
-
+    }
 }
