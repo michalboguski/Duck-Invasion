@@ -1,6 +1,5 @@
 package pl.michalboguski.View;
 
-import pl.michalboguski.Controler.DuckControler;
 import pl.michalboguski.Controler.GameControler;
 import pl.michalboguski.Model.DificulyLevel;
 import pl.michalboguski.Model.GameConstants;
@@ -15,7 +14,6 @@ import java.io.IOException;
 public class PlayPanel extends JPanel {
 
     BufferedImage backgroundImage;
-    DuckControler DC = new DuckControler();
     DificulyLevel level = new DificulyLevel(GameConstants.Levels.EASY);
 
     public PlayPanel() {
@@ -29,15 +27,6 @@ public class PlayPanel extends JPanel {
             System.out.println("Błąd przy ładowaniu tła gry");
         }
     }
-
-    public void addDuck() {
-        for (Duck duck : DuckControler.next) {
-            DuckControler.ducks.add(duck);
-            add(duck);
-        }
-        DuckControler.next.clear();
-    }
-
 
     public void paintComponent(Graphics g) {
         g.drawImage(backgroundImage, 0, 0, null);

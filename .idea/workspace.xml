@@ -3,30 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="48039e9f-da4c-498b-ba8d-9f79ca5ad905" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/Controler/DuckControler$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/Controler/DuckControler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/Controler/GameControler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/Model/DificulyLevel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/Model/DuckColors.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/Model/DuckImages.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/Model/GameConstants$Levels.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/Model/GameConstants.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/Model/TimeLapse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/View/Duck.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/View/GamePanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/View/GameWindow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/View/PlayPanel$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/View/PlayPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/View/StartPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/View/StartWindow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/View/UpPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/Controler/DuckControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/Controler/DuckControler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/Controler/DuckControler.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/Controler/GameControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/Controler/GameControler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/Model/DificulyLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/Model/DificulyLevel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/Model/DuckImages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/Model/DuckAnimationSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/Duck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/Duck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/PlayPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/PlayPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/UpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/UpPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

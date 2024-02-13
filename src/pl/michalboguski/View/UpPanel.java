@@ -6,7 +6,7 @@ import pl.michalboguski.Model.TimeLapse;
 import javax.swing.*;
 import java.awt.*;
 
-public class UpPanel extends JPanel {
+public class UpPanel extends JPanel{
     public static JLabel lives;
     public static JLabel seconds;
     public static JLabel points;

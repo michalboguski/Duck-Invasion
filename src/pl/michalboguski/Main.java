@@ -1,6 +1,7 @@
 package pl.michalboguski;
 
 import pl.michalboguski.View.StartWindow;
+
 import javax.swing.*;
 
 public class Main {
@@ -8,3 +9,4 @@ public class Main {
         SwingUtilities.invokeLater(() -> new StartWindow());
     }
 }
+

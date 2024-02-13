@@ -1,6 +1,5 @@
 package pl.michalboguski.View;
 
-import pl.michalboguski.Controler.GameControler;
 import pl.michalboguski.Model.DuckAnimationSet;
 
 import javax.swing.*;
@@ -13,7 +12,6 @@ public class Duck extends JButton implements Runnable {
     public static int speed = 1;
     String direction;
     boolean flyAway;
-    DuckColor color;
     int hp;
     int voluePoints;
     boolean isAlaive;
@@ -48,7 +46,6 @@ public class Duck extends JButton implements Runnable {
                     if (getHp() <= 0) {
                         setVisible(false);
                         setAlaive(false);
-                        GameControler.points += voluePoints;
                     }
                 }
             }
@@ -108,20 +105,9 @@ public class Duck extends JButton implements Runnable {
         return speed;
     }
 
-    public void setSpeed(int speed) {
-        Duck.speed = speed;
-    }
 
     public String getDirection() {
         return direction;
-    }
-
-    public DuckColor getColor() {
-        return color;
-    }
-
-    public void setColor(DuckColor color) {
-        this.color = color;
     }
 
     public void move() {
@@ -152,7 +138,7 @@ public class Duck extends JButton implements Runnable {
             }
 
             animateDeley = r.nextInt(20) + 20;
-            if (tick % 29 == 0) {
+            if (tick % animateDeley == 0) {
                 animate();
             }
 
