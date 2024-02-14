@@ -20,7 +20,7 @@ public class PlayPanel extends JPanel {
         super();
         setLayout(null);
         setVisible(true);
-        GameControler gameControler = new GameControler(GameConstants.Levels.NORMAL);
+
         try {
             backgroundImage = ImageIO.read(new File("sky.jpeg"));
         } catch (IOException e) {

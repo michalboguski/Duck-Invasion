@@ -3,10 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="48039e9f-da4c-498b-ba8d-9f79ca5ad905" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/Controler/DuckControler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/View/LevelSelect.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/Controler/GameControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/Controler/GameControler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/Duck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/Duck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/HightScore.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/LevelSelect.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/PlayPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/PlayPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/UpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/UpPanel.java" afterDir="false" />
     </list>
@@ -18,8 +20,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>

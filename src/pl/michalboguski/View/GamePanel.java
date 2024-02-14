@@ -1,5 +1,8 @@
 package pl.michalboguski.View;
 
+import pl.michalboguski.Controler.GameControler;
+import pl.michalboguski.Model.GameConstants;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -38,6 +41,9 @@ public class GamePanel extends JPanel {
         add(topPanel, BorderLayout.PAGE_START);
         add(bottomPanel, BorderLayout.PAGE_END);
         topPanel.setPreferredSize(new Dimension(screenWidth, 50));
+
+        GameControler gameControler = new GameControler(GameConstants.Levels.NORMAL, topPanel, glassPanel);
+
 
     }
 

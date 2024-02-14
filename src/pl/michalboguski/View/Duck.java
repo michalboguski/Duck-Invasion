@@ -19,6 +19,7 @@ public class Duck extends JButton implements Runnable {
     ImageIcon currentImage;
     int quee;
 
+
     public Duck(DuckColor color) {
         super();
         this.flyAway = false;
@@ -28,9 +29,13 @@ public class Duck extends JButton implements Runnable {
         this.animationSet = new DuckAnimationSet(color, direction);
         initDuck();
         this.quee = 0;
+
+        new Thread(this).start();
+        System.out.println("Duck Created");
     }
 
     public void initDuck() {
+        this.setVisible(true);
         this.setFocusable(false);
         this.setSize(79, 64);
         this.setOpaque(false);
@@ -122,47 +127,60 @@ public class Duck extends JButton implements Runnable {
     public void run() {
         Random r = new Random();
         int animateDeley;
-        long now;
-        long updateTime;
-        long wait;
-
-        final int TARGET_FPS = 60;
-        final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
-        int tick = 1;
+        long lastTime = System.nanoTime();
+        final double amountOfTicks = 60.0;
+        double ns = 1000000000 / amountOfTicks;
+        double delta = 0;
+        int updates = 0;
+        int frames = 0;
+        long timer = System.currentTimeMillis();
 
         while (isAlaive) {
-            now = System.nanoTime();
-
-            if (tick % 29 == 0) {
+            long now = System.nanoTime();
+            delta += (now - lastTime) / ns;
+            lastTime = now;
+            if (delta >= 1) {
                 move();
+
+                updates++;
+                delta--;
             }
 
+            frames++;
             animateDeley = r.nextInt(20) + 20;
-            if (tick % animateDeley == 0) {
+            if (frames % animateDeley == 0) {
                 animate();
             }
 
-            updateTime = System.nanoTime() - now;
-            wait = (OPTIMAL_TIME - updateTime) / 1000000;
-
-            try {
-                Thread.sleep(wait);
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (System.currentTimeMillis() - timer > 1000) {
+                timer += 1000;
+                System.out.println(updates + " Ticks, Fps " + frames);
+                updates = 0;
+                frames = 0;
             }
-            tick++;
-            if (tick >= 60) tick = 1;
 
         }
     }
 
     private void animate() {
         switch (quee) {
-            case 0 -> {setIcon(animationSet.up); quee = 1;}
-                case 1 -> {setIcon(animationSet.center); quee = 2;}
-                    case 2 -> {setIcon(animationSet.down); quee = 3;}
-                        case 3 -> {setIcon(animationSet.center); quee = 0;}
+            case 0 -> {
+                setIcon(animationSet.up);
+                quee = 1;
             }
+            case 1 -> {
+                setIcon(animationSet.center);
+                quee = 2;
+            }
+            case 2 -> {
+                setIcon(animationSet.down);
+                quee = 3;
+            }
+            case 3 -> {
+                setIcon(animationSet.center);
+                quee = 0;
+            }
+        }
 
     }
 

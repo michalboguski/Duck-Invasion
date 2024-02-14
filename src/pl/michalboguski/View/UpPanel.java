@@ -1,34 +1,32 @@
 package pl.michalboguski.View;
 
-import pl.michalboguski.Controler.GameControler;
-import pl.michalboguski.Model.TimeLapse;
-
 import javax.swing.*;
 import java.awt.*;
 
-public class UpPanel extends JPanel{
-    public static JLabel lives;
-    public static JLabel seconds;
-    public static JLabel points;
+public class UpPanel extends JPanel {
+    public JLabel livesLabel;
+    public JLabel timeLabel;
+    public JLabel pointsLabel;
+
 
     public UpPanel() {
         Dimension d = new Dimension(100, 40);
         setLayout(new FlowLayout());
         setBackground(Color.yellow);
-        lives = new JLabel();
-        seconds = new JLabel();
-        points = new JLabel();
-        lives.setPreferredSize(d);
-        seconds.setPreferredSize(d);
-        points.setPreferredSize(d);
+        livesLabel = new JLabel();
+        timeLabel = new JLabel();
+        pointsLabel = new JLabel();
+        livesLabel.setPreferredSize(d);
+        timeLabel.setPreferredSize(d);
+        pointsLabel.setPreferredSize(d);
 
-        lives.setOpaque(true);
-        seconds.setOpaque(true);
-        points.setOpaque(true);
+        livesLabel.setOpaque(true);
+        timeLabel.setOpaque(true);
+        pointsLabel.setOpaque(true);
 
-        add(lives);
-        add(seconds);
-        add(points);
+        add(livesLabel);
+        add(timeLabel);
+        add(pointsLabel);
 
         JLabel test = new JLabel("TEST");
         test.setOpaque(true);
@@ -36,14 +34,15 @@ public class UpPanel extends JPanel{
         add(test);
     }
 
-    public static void updateUp() {
-        if (GameControler.lives > 0) {
-            lives.setText(String.valueOf(GameControler.lives));
-            seconds.setText(String.valueOf(TimeLapse.seconds));
-            points.setText(String.valueOf(GameControler.points));
-
-        }
+    public void setLives(int newLives) {
+        livesLabel.setText(String.valueOf(newLives));
     }
 
+    public void setTime(int minutes, int seconds){
+        timeLabel.setText(minutes+":"+seconds);
+    }
 
+    public void setPoints(int newPoints){
+        pointsLabel.setText(String.valueOf(newPoints));
+    }
 }
