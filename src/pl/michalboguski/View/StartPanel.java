@@ -1,11 +1,11 @@
 package pl.michalboguski.View;
 
-import pl.michalboguski.Model.GameConstants;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import static pl.michalboguski.Model.GameConstants.*;
 
 public class StartPanel extends JPanel implements ActionListener {
     JButton newGame;
@@ -14,10 +14,9 @@ public class StartPanel extends JPanel implements ActionListener {
 
     public StartPanel() {
         super();
-        setSize(new Dimension(GameConstants.screenWigth - 300, GameConstants.screenHeight));
+        setSize(startSize);
         setBackground(Color.BLACK);
         setLayout(null);
-
 
         JLabel SPLabel = new JLabel("Wybierz Opcje");
         newGame = new JButton("New Game");
@@ -28,12 +27,10 @@ public class StartPanel extends JPanel implements ActionListener {
         highScore.addActionListener(this);
         exit.addActionListener(this);
 
-        int buttonWidth = 200;
-        int buttonHeight = 60;
-        SPLabel.setBounds((GameConstants.screenWigth - 300) / 2 - buttonWidth / 2, 50, buttonWidth, buttonHeight);
-        newGame.setBounds((GameConstants.screenWigth - 300) / 2 - buttonWidth / 2, 150, buttonWidth, buttonHeight);
-        highScore.setBounds((GameConstants.screenWigth - 300) / 2 - buttonWidth / 2, 300, buttonWidth, buttonHeight);
-        exit.setBounds((GameConstants.screenWigth - 300) / 2 - buttonWidth / 2, 450, buttonWidth, buttonHeight);
+        SPLabel.setBounds((screenWidth - 300) / 2 - buttonWidth / 2, 50, buttonWidth, buttonHeight);
+        newGame.setBounds((screenWidth - 300) / 2 - buttonWidth / 2, 150, buttonWidth, buttonHeight);
+        highScore.setBounds((screenWidth - 300) / 2 - buttonWidth / 2, 300, buttonWidth, buttonHeight);
+        exit.setBounds((screenWidth - 300) / 2 - buttonWidth / 2, 450, buttonWidth, buttonHeight);
 
         SPLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 
@@ -41,16 +38,15 @@ public class StartPanel extends JPanel implements ActionListener {
         add(newGame);
         add(highScore);
         add(exit);
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == newGame) {
-            new GameWindow();
-            JFrame w = (JFrame) SwingUtilities.getWindowAncestor(newGame);
-            w.dispose();
-
+            removeAll();
+            add(new LevelPanel());
+            repaint();
+            revalidate();
         }
         if (e.getSource() == highScore) {
             //todo

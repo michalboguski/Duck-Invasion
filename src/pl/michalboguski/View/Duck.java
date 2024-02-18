@@ -3,17 +3,18 @@ package pl.michalboguski.View;
 import pl.michalboguski.Model.DuckAnimationSet;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class Duck extends JButton implements Runnable {
+import static pl.michalboguski.Model.GameConstants.*;
+
+public class Duck extends JButton {
     public static int speed = 1;
     String direction;
     boolean flyAway;
     int hp;
-    int voluePoints;
+    int valuePoints;
     boolean isAlaive;
     DuckAnimationSet animationSet;
     ImageIcon currentImage;
@@ -22,19 +23,17 @@ public class Duck extends JButton implements Runnable {
 
     public Duck(DuckColor color) {
         super();
+        this.isAlaive = true;
         this.flyAway = false;
         this.direction = randomDirection();
         this.hp = initHP(color);
-        this.voluePoints = this.hp * speed;
+        this.valuePoints = this.hp * speed;
         this.animationSet = new DuckAnimationSet(color, direction);
         initDuck();
         this.quee = 0;
-
-        new Thread(this).start();
-        System.out.println("Duck Created");
     }
 
-    public void initDuck() {
+    private void initDuck() {
         this.setVisible(true);
         this.setFocusable(false);
         this.setSize(79, 64);
@@ -43,10 +42,15 @@ public class Duck extends JButton implements Runnable {
         this.setBorderPainted(false);
         initLocation();
         this.currentImage = animationSet.center;
-        addActionListener(new ActionListener() {
+        addActionListenerToDuck(this);
+        System.out.println("duck "+ getHp()+" HP");
+    }
+
+    private void addActionListenerToDuck(Duck duck){
+        this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == this) {
+                if (e.getSource() == duck) {
                     hp--;
                     if (getHp() <= 0) {
                         setVisible(false);
@@ -73,21 +77,20 @@ public class Duck extends JButton implements Runnable {
     public void initLocation() {
         Random r = new Random();
         int y = r.nextInt(500);
-        int x = 0;
+        int x = -50;
         if ("Left".equals(getDirection())) {
-            x = GamePanel.screenWidth - 100;
+            x = screenWidth +50;
+
         }
-        setLocation(new Point(x, y));
+        setLocation(x - 50  + r.nextInt(100), y);
     }
 
     public int initHP(DuckColor c) {
         if (DuckColor.YELLOW.equals(c)) return 1;
-        if (DuckColor.RED.equals(c)) return 2;
-        if (DuckColor.GREEN.equals(c)) return 3;
-        if (DuckColor.BLUE.equals(c)) return 4;
-        if (DuckColor.GREY.equals(c)) return 5;
-
-        return 0;
+        else if (DuckColor.RED.equals(c)) return 2;
+        else if (DuckColor.GREEN.equals(c)) return 3;
+        else if (DuckColor.BLUE.equals(c)) return 4;
+        else return 5;
     }
 
     public boolean isFlyAway() {
@@ -102,67 +105,25 @@ public class Duck extends JButton implements Runnable {
         return hp;
     }
 
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
 
-    public int getSpeed() {
-        return speed;
+    public int getValuePoints() {
+        return valuePoints;
     }
-
 
     public String getDirection() {
         return direction;
     }
 
+
     public void move() {
         if ("Right".equals(getDirection()))
-            setLocation(new Point(getX() - Duck.speed, getY()));
+            setLocation(getX() + Duck.speed, getY());
         else
-            setLocation(new Point(getX() + Duck.speed, getY()));
+            setLocation(getX() - Duck.speed, getY());
     }
 
 
-    @Override
-    public void run() {
-        Random r = new Random();
-        int animateDeley;
-        long lastTime = System.nanoTime();
-        final double amountOfTicks = 60.0;
-        double ns = 1000000000 / amountOfTicks;
-        double delta = 0;
-        int updates = 0;
-        int frames = 0;
-        long timer = System.currentTimeMillis();
-
-        while (isAlaive) {
-            long now = System.nanoTime();
-            delta += (now - lastTime) / ns;
-            lastTime = now;
-            if (delta >= 1) {
-                move();
-
-                updates++;
-                delta--;
-            }
-
-            frames++;
-            animateDeley = r.nextInt(20) + 20;
-            if (frames % animateDeley == 0) {
-                animate();
-            }
-
-            if (System.currentTimeMillis() - timer > 1000) {
-                timer += 1000;
-                System.out.println(updates + " Ticks, Fps " + frames);
-                updates = 0;
-                frames = 0;
-            }
-
-        }
-    }
-
-    private void animate() {
+    public void animate() {
         switch (quee) {
             case 0 -> {
                 setIcon(animationSet.up);
@@ -181,8 +142,5 @@ public class Duck extends JButton implements Runnable {
                 quee = 0;
             }
         }
-
     }
-
-
 }

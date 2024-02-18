@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48039e9f-da4c-498b-ba8d-9f79ca5ad905" name="Changes" comment="">
+    <list default="true" id="48039e9f-da4c-498b-ba8d-9f79ca5ad905" name="Changes" comment="Some reorganization">
+      <change afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/LevelPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/View/LevelSelect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Duck_Invasion/pl/michalboguski/Model/GameLevel.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/Controler/GameControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/Controler/GameControler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/Model/GameConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/Model/GameConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/Model/GameLevel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/Model/HighScoresModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/Model/Levels.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/Model/TimeLapse.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/Duck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/Duck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/HightScore.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/LevelSelect.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/PlayPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/PlayPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/UpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/UpPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/GameWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/StartPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/StartPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/StartWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/StartWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/michalboguski/View/UpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/michalboguski/View/StatsPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +106,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="inlay.hints.JAVA" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -151,12 +157,28 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Some reorganization" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some reorganization" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

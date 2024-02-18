@@ -4,26 +4,27 @@ import pl.michalboguski.Model.GameConstants;
 import pl.michalboguski.View.Duck;
 import pl.michalboguski.View.DuckColor;
 import pl.michalboguski.View.PlayPanel;
-import pl.michalboguski.View.UpPanel;
+import pl.michalboguski.View.StatsPanel;
 
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
-public class GameControler implements Runnable, TimeLapseListener, PointsListener, LivesListener{
+public class GameControler implements Runnable {
 
+    public Set<Duck> ducks = new HashSet<>();
+    StatsPanel statPanel;
+    PlayPanel playPanel;
+    boolean gameOver;
     private int lives;
     private int minutes;
     private int seconds;
     private int points;
-    UpPanel statPanel;
-    JPanel playPanel;
-    public Set<Duck> ducks = new HashSet<>();
-    boolean gameOver;
 
 
-
-    public GameControler(GameConstants.Levels gameLevel, UpPanel statPanel, JPanel playPanel) {
+    public GameControler(GameConstants.Levels gameLevel, StatsPanel statPanel, PlayPanel playPanel) {
         this.gameOver = false;
         if (gameLevel == GameConstants.Levels.EASY) Duck.speed = 3;
         if (gameLevel == GameConstants.Levels.NORMAL) Duck.speed = 5;
@@ -40,104 +41,96 @@ public class GameControler implements Runnable, TimeLapseListener, PointsListene
 
     @Override
     public void run() {
-        long lastTime = System.nanoTime();
-        double FPS = 60.0;
-        double ns = 1000000000 / FPS;
-        double delta = 0;
-        int updates = 0;
-        long timer = System.currentTimeMillis();
-        int frames = 0;
+        Random r = new Random();
         int levelPoints = 5;
+        final int FPS = 20;
+        long sllepTime = 1000 / FPS;
+        int tick = 1;
+
         while (!gameOver) {
-            long now = System.nanoTime();
-            delta += (now - lastTime) / ns;
-            lastTime = now;
-            while (delta >= 1) {
-                ///////////////////
-
-               // checkDucks(ducks);
-
-                ///////////////////
-                updates++;
-                delta--;
+            if (lives <= 0) {gameOver = true; break;}
+            try {
+                Thread.sleep(sllepTime);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            frames++;
+            checkDucks(ducks);
+            ducks.forEach(Duck::move);
+            if (r.nextInt(10)  > 8)
+                ducks.forEach(Duck::animate);
+            tick++;
 
-            if (System.currentTimeMillis() - timer > 1000) {
+            if (tick % FPS == 0) {
                 seconds++;
                 if (seconds % 5 == 0) {
                     createDucksByPoints(++levelPoints);
                 }
-                timer += 1000;
-            }
-            if (seconds >= 60) {
-                System.out.println(seconds);
-                minutes++;
-                seconds = 0;
-            }
 
-           // System.out.println(updates + " Ticks, Fps " + frames);
-            updates = 0;
-            frames = 0;
+                if (seconds % 60 == 0) {
+                    minutes++;
+                    seconds = 0;
+                }
+                updateTime();
+            }
         }
+        System.out.println("GAME OVER");
     }
 
-    public void createDucksByPoints(int duckPoints) {
+    private void createDucksByPoints(int points) {
+        System.out.println("punkty: "+ points);
+        int duckPoints = points;
         while (duckPoints > 0) {
-            Duck duck = null;
-            if ((duckPoints / 25) >= 1) {
+            Duck duck;
+            if ((duckPoints / 5) >= 1) {
                 duck = new Duck(DuckColor.GREY);
                 duckPoints -= 5;
             }
-            if ((duckPoints / 16) >= 1) {
+            else if ((duckPoints / 4) >= 1) {
                 duck = new Duck(DuckColor.BLUE);
                 duckPoints -= 4;
             }
-            if ((duckPoints / 15) >= 1) {
+            else if ((duckPoints / 3) >= 1) {
                 duck = new Duck(DuckColor.GREEN);
                 duckPoints -= 3;
             }
-            if ((duckPoints / 10) >= 1) {
+            else if ((duckPoints / 2) >= 1) {
                 duck = new Duck(DuckColor.RED);
                 duckPoints -= 2;
             } else {
                 duck = new Duck(DuckColor.YELLOW);
                 duckPoints -= 1;
-                duckPoints -= 1;
             }
             playPanel.add(duck);
+            ducks.add(duck);
         }
     }
 
 
-    public void checkDucks(Set<Duck> ducks) {
+    private void checkDucks(Set<Duck> ducks) {
         for (Duck duck : ducks) {
-         //   if ((duck.getX() > 1200) || (duck.getX() < -80)) duck.setFlyAway(true);
-         //   if (duck.isFlyAway()) ;
-            if (!duck.isAlaive()) updateLives();
+            if (((duck.getX() > 1280) && ("Right".equals(duck.getDirection()))) ||
+                    ((duck.getX() < -80)) && ("Left".equals(duck.getDirection()))) duck.setFlyAway(true);
+            if (duck.isFlyAway()) updateLives();
+            if (!duck.isAlaive()) updatePoints(duck.getValuePoints());
         }
         ducks.removeIf(d -> !d.isAlaive() || d.isFlyAway());
-
     }
 
-    @Override
-    public void updateLives() {
+    private void updateLives() {
         statPanel.setLives(--lives);
     }
 
-    @Override
-    public void updatePoints() {
-        statPanel.setPoints(++points);
+    private void updatePoints(int p) {
+        statPanel.setPoints(points += p);
     }
 
-    @Override
-    public void updateTime() {
+    private void updateTime() {
         seconds++;
         if (seconds >= 59) {
             seconds = 0;
             minutes++;
         }
-        statPanel.setTime(minutes,seconds);
+        statPanel.setTime(minutes, seconds);
     }
 }
 
